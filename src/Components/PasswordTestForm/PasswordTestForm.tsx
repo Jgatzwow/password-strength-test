@@ -45,7 +45,9 @@ export const PasswordTestForm = () => {
     resolver: yupResolver(ValidationSchema)
   })
   const onChangePasswordHandler = (newPass: string) => {
-    if (newPass.trim().length >= 8) {
+    if (newPass.trim().length === 0) {
+      setPasswordStrength(StrengthType.Empty)
+    } else if (newPass.trim().length >= 8) {
       if (
         newPass.match(ONLY_LETTERS)
         || newPass.match(ONLY_DIGITS)
@@ -63,8 +65,6 @@ export const PasswordTestForm = () => {
       if (newPass.match(DIGITS_LETTERS_SYMBOLS)) {
         setPasswordStrength(StrengthType.Strong)
       }
-    } else if (newPass.trim().length === 0) {
-      setPasswordStrength(StrengthType.Empty)
     } else setPasswordStrength(StrengthType.Error)
   }
 
