@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/password-strength-test/static/css/main.3ba594b6.css",
-    "main.js": "/password-strength-test/static/js/main.81cb5e4f.js",
+    "main.js": "/password-strength-test/static/js/main.7b6270c3.js",
     "index.html": "/password-strength-test/index.html",
     "static/media/Eye-slash.svg": "/password-strength-test/static/media/Eye-slash.b847f7f3a09778219d18d4a9e6f1e4ad.svg",
     "static/media/Eye.svg": "/password-strength-test/static/media/Eye.ec9b0c5c1ae0c76f585dcb013d131067.svg",
     "main.3ba594b6.css.map": "/password-strength-test/static/css/main.3ba594b6.css.map",
-    "main.81cb5e4f.js.map": "/password-strength-test/static/js/main.81cb5e4f.js.map"
+    "main.7b6270c3.js.map": "/password-strength-test/static/js/main.7b6270c3.js.map"
   },
   "entrypoints": [
     "static/css/main.3ba594b6.css",
-    "static/js/main.81cb5e4f.js"
+    "static/js/main.7b6270c3.js"
   ]
 }
