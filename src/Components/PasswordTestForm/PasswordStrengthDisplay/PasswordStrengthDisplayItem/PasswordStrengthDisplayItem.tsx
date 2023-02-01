@@ -6,9 +6,10 @@ interface PasswordStrengthDisplayItemProps {
   passwordStr: StrengthType
 }
 
-export const PasswordStrengthDisplayItem: FC<PropsWithChildren<PasswordStrengthDisplayItemProps>> = ({
-                                                                                                       children,
-                                                                                                       passwordStr
-                                                                                                     }) => {
+export const PasswordStrengthDisplayItem: FC<PropsWithChildren<PasswordStrengthDisplayItemProps>> = (
+  {
+    children,
+    passwordStr
+  }) => {
   return <StyledPasswordStrengthDisplayItem passwordStr={passwordStr}>{children}</StyledPasswordStrengthDisplayItem>
 };

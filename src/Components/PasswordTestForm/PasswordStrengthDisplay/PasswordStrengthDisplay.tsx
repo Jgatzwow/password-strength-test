@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {PasswordStrengthDisplayItem} from './PasswordStrengthDisplayItem/PasswordStrengthDisplayItem';
 import {Text} from '../../../shared/ui/Text/Text';
 import {FlexBox} from '../../../shared/ui/FlexBox/FlexBox';
@@ -8,7 +8,7 @@ interface PasswordStrengthDisplayProps {
   passwordStrength: StrengthType
 }
 
-export const PasswordStrengthDisplay: FC<PasswordStrengthDisplayProps> = ({passwordStrength}) => {
+export const PasswordStrengthDisplay: FC<PasswordStrengthDisplayProps> = memo(({passwordStrength}) => {
 
   return (
     <>
@@ -20,4 +20,4 @@ export const PasswordStrengthDisplay: FC<PasswordStrengthDisplayProps> = ({passw
       </FlexBox>
     </>
   );
-};
+});

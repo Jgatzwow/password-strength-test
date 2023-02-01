@@ -8,7 +8,6 @@ import {
 } from './StyledInput'
 import styles from './Input.module.css'
 import {Span} from '../Span/Span'
-import {Button} from '../Button/Button';
 import classNames from 'classnames';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -69,11 +68,6 @@ export const Input = memo(
           >
             {title}
           </Span>
-          {withSaveButton && !error ? (
-            <Button className={classNames(styles.saveButton)} nonRounded>
-              Save
-            </Button>
-          ) : null}
           {hidePassword ? (
             <StyledShowPasswordWrapper onClick={toggleTypeHandler} tabIndex={1}>
               {typeInput === 'password' ? (

@@ -77,7 +77,7 @@ export const PasswordTestForm = () => {
                              error={errors.password?.message} {...field}
                       />)}
         />
-        <PasswordStrengthDisplay passwordStrength={passwordStrength}/>
+        <PasswordStrengthDisplay passwordStrength={passwordStrength}></PasswordStrengthDisplay>
       </FormBox>
     </form>
   );
