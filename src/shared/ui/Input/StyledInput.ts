@@ -1,9 +1,11 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components'
+import {ReactComponent as EyeIcon} from '../../assets/icons/Eye.svg'
+import {ReactComponent as EyeSlashIcon} from '../../assets/icons/Eye-slash.svg'
 
 interface StyledInputProps {
-  changeInputsView?: boolean
-  showPassword?: boolean
+  hidePassword?: boolean
   error?: boolean
+  withSaveButton?: boolean
   margin?: string
 }
 
@@ -12,19 +14,68 @@ export const StyledInput = styled.input<StyledInputProps>`
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
-  height: 36px;
+  height: 28px;
   font-family: inherit;
-  border: 1px solid #d9d9d9;
+  transition: 0.2s ease-in;
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 2px;
-  padding: 6px 6px 6px 40px;
-  margin: ${props => (props.margin ? props.margin : '5px')};
+  padding: 0;
+  margin: ${props => (props.margin ? props.margin : '0')};
 
   &:focus {
     outline: none;
-    border: 1px solid rgba(54, 110, 255, 1);
+    border-bottom: 2px solid rgb(54, 110, 255);
   }
+
   &::placeholder {
     font-weight: 400;
     user-select: none;
+  }
+
+  ${props =>
+          props.hidePassword &&
+          css`
+            padding-right: 48px;
+          `}
+  ${props =>
+          props.withSaveButton &&
+          css`
+            padding-right: 80px;
+          `}
+  ${props =>
+          props.error &&
+          css`
+            border: none;
+            border-bottom: 2px solid #ff3636;
+
+            &:focus {
+              border-bottom: 2px solid #ff3636;
+            }
+          `}
+`
+export const StyledShowPasswordIcon = styled(EyeIcon)`
+  width: 24px;
+  height: 24px;
+`
+export const StyledShowPasswordSlashIcon = styled(EyeSlashIcon)`
+  width: 24px;
+  height: 24px;
+`
+
+export const StyledShowPasswordWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  width: 39px;
+  height: 36px;
+  transition: 0.3s;
+  top: 13px;
+  right: 0;
+
+  &:hover {
+    opacity: 0.7;
   }
 `

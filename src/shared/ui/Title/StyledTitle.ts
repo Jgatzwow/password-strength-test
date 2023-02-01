@@ -11,4 +11,5 @@ export const StyledTitle = styled.h2<StyledTitleProps>`
   font-size: ${props => (props.fontSize ? props.fontSize : '26px')};
   line-height: ${props => (props.lineHeight ? props.lineHeight : 'normal')};
   color: ${props => (props.color ? props.color : '#282828')};
+  margin-bottom: ${props => (props.marginBottom ? props.marginBottom : '10px')};
 `

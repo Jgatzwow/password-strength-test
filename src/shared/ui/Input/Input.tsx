@@ -1,34 +1,103 @@
-import React, {ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, memo, useState} from 'react';
-import {StyledInput} from './StyledInput';
+import {ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, memo, useState} from 'react'
+
+import {
+  StyledInput,
+  StyledShowPasswordIcon,
+  StyledShowPasswordSlashIcon,
+  StyledShowPasswordWrapper
+} from './StyledInput'
+import styles from './Input.module.css'
+import {Span} from '../Span/Span'
+import {Button} from '../Button/Button';
+import classNames from 'classnames';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeHolderVal: string
-  showPassword?: boolean
-  error?: boolean
-  margin?: string
+  title: string
+  hidePassword?: boolean
+  withSaveButton?: boolean
+  error?: string
   onEnter?: () => void
+  margin?: string
 }
 
-type InputType = 'text' | 'password'
+type TypeInput = 'text' | 'password'
 
-export const Input = memo(forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const {placeHolderVal, showPassword, onEnter, onChange, ...restProps} = props
+export const Input = memo(
+  forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+    const {
+      error,
+      onEnter,
+      withSaveButton,
+      hidePassword,
+      title,
+      onChange,
+      value,
+      ...restProps
+    } = props
 
-  const [inputType, setInputType] = useState<InputType>(showPassword ? 'password' : 'text')
+    const [typeInput, setTypeInput] = useState<TypeInput>(
+      hidePassword ? 'password' : 'text'
+    )
 
-  const onInputValueChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e)
-  }
-
-  const toggleTypeHandler = () => {
-    setInputType((prev) => (prev === 'text' ? 'password' : 'text'))
-  }
-
-  const onEnterPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      onEnter && onEnter()
+    const inputValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e)
     }
-  }
-  return <StyledInput {...restProps}></StyledInput>
-}));
 
+    const toggleTypeHandler = () => {
+      setTypeInput(prev => (prev === 'text' ? 'password' : 'text'))
+    }
+
+    const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+      if ((e.key = 'Enter')) {
+        onEnter && onEnter()
+      }
+    }
+
+    return (
+      <div className={styles.wrapperWrapper}>
+        <div className={styles.wrapper}>
+          <Span
+            className={classNames(styles.span, {
+              [styles.show]: (value as string)
+            })}
+            nonSelect
+            light
+          >
+            {title}
+          </Span>
+          {withSaveButton && !error ? (
+            <Button className={classNames(styles.saveButton)} nonRounded>
+              Save
+            </Button>
+          ) : null}
+          {hidePassword ? (
+            <StyledShowPasswordWrapper onClick={toggleTypeHandler} tabIndex={1}>
+              {typeInput === 'password' ? (
+                <StyledShowPasswordIcon/>
+              ) : (
+                <StyledShowPasswordSlashIcon/>
+              )}
+            </StyledShowPasswordWrapper>
+          ) : null}
+          <label className={styles.label}>
+            <StyledInput
+              value={value}
+              ref={ref}
+              onKeyDown={onEnterHandler}
+              error={!!error}
+              withSaveButton={!!withSaveButton}
+              type={typeInput}
+              hidePassword={!!hidePassword}
+              onChange={inputValueHandler}
+              placeholder={title}
+              {...restProps}
+            />
+            <Span error className={styles.error}>
+              {error}
+            </Span>
+          </label>
+        </div>
+      </div>
+    )
+  })
+)

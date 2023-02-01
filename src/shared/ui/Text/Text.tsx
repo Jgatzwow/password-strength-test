@@ -3,7 +3,7 @@ import {StyledText} from './StyledText';
 
 interface TextProps {
   fontSize?: string
-  marginBottom?: string
+  margin?: string
   color?: string
   lineHeight?: string
 }

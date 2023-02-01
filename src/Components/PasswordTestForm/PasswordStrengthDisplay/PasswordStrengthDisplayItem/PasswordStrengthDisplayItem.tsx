@@ -1,6 +1,14 @@
 import React, {FC, PropsWithChildren} from 'react';
 import {StyledPasswordStrengthDisplayItem} from './StyledPasswordStrengthDisplayItem';
+import {StrengthType} from '../../PasswordTestForm';
 
-export const PasswordStrengthDisplayItem: FC<PropsWithChildren> = ({children}) => {
-  return <StyledPasswordStrengthDisplayItem>{children}</StyledPasswordStrengthDisplayItem>
+interface PasswordStrengthDisplayItemProps {
+  passwordStr: StrengthType
+}
+
+export const PasswordStrengthDisplayItem: FC<PropsWithChildren<PasswordStrengthDisplayItemProps>> = ({
+                                                                                                       children,
+                                                                                                       passwordStr
+                                                                                                     }) => {
+  return <StyledPasswordStrengthDisplayItem passwordStr={passwordStr}>{children}</StyledPasswordStrengthDisplayItem>
 };
