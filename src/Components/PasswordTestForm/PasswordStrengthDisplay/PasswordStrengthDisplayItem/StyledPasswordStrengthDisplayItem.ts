@@ -15,6 +15,7 @@ export const StyledPasswordStrengthDisplayItem = styled.div<StyledPasswordStreng
   border-radius: 5px;
   opacity: 0.5;
   background: #bdbdbd;
+  transition: 0.5s;
 
   ${props =>
           props.passwordStr === 'easy' &&

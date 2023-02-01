@@ -14,12 +14,20 @@ interface FormValues {
 export type StrengthType = 'empty' | 'easy' | 'medium' | 'strong' | 'error'
 
 const Schema = yup.object({
-  password: yup.string().required()
+  password: yup.string().required().min(8).max(50)
 })
 
 export const PasswordTestForm = () => {
 
-  const [passwordStrength, setPasswordStrength] = useState<StrengthType>('strong')
+  const ONLY_LETTERS = /[a-z]/gi
+  const ONLY_DIGITS = /^\d+$/
+  const ONLY_SYMBOLS = /[!@#$%^&*)(+=.<>{}[\]:;'"|~`_-]/g
+  const LETTERS_AND_DIGITS = /^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/
+  /*const LETTERS_AND_SYMBOLS = /^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/
+  const DIGITS_AND_SYMBOLS = /^[0-9\x2D\x2B\x23]+$/
+  const LETTERS_DIGITS_SYMBOLS = /^(?=.*[a-z0-9])[a-z0-9!@#$%&*.]{7,}$/i*/
+
+  const [passwordStrength, setPasswordStrength] = useState<StrengthType>('empty')
 
   const {control, formState: {errors}} = useForm<FormValues>({
     defaultValues: {
@@ -28,7 +36,25 @@ export const PasswordTestForm = () => {
     mode: 'all',
     resolver: yupResolver(Schema)
   })
-
+  const onChangePasswordHandler = (newPass: string) => {
+    if (newPass.length < 8) {
+      setPasswordStrength('error')
+    }
+    if (newPass.length >= 8) {
+      if (newPass.match(ONLY_DIGITS)) {
+        setPasswordStrength('easy')
+      }
+      if (newPass.match(ONLY_LETTERS)) {
+        setPasswordStrength('easy')
+      }
+      if (newPass.match(ONLY_SYMBOLS)) {
+        setPasswordStrength('easy')
+      }
+      if (newPass.match(LETTERS_AND_DIGITS)) {
+        setPasswordStrength('medium')
+      }
+    }
+  }
 
   return (
     <form>
@@ -36,8 +62,11 @@ export const PasswordTestForm = () => {
         <Title marginBottom="10px">Enter Your Password</Title>
         <Controller control={control} name={'password'}
                     render={({field}) => (
-                      <Input title={'Enter your password'} hidePassword
-                             error={errors.password?.message} {...field}/>)}/>
+                      <Input onChangePassword={onChangePasswordHandler}
+                             title={'Enter your password'} hidePassword
+                             error={errors.password?.message} {...field}
+                      />)}
+        />
         <PasswordStrengthDisplay passwordStrength={passwordStrength}/>
       </FormBox>
     </form>

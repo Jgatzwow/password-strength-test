@@ -1,4 +1,4 @@
-import {ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, memo, useState} from 'react'
+import {ChangeEvent, forwardRef, InputHTMLAttributes, memo, useState} from 'react'
 
 import {
   StyledInput,
@@ -17,6 +17,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   withSaveButton?: boolean
   error?: string
   onEnter?: () => void
+  onChangePassword?: (newPass: string) => void
   margin?: string
 }
 
@@ -31,6 +32,7 @@ export const Input = memo(
       hidePassword,
       title,
       onChange,
+      onChangePassword,
       value,
       ...restProps
     } = props
@@ -41,16 +43,11 @@ export const Input = memo(
 
     const inputValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e)
+      onChangePassword?.(e.currentTarget.value.trim())
     }
 
     const toggleTypeHandler = () => {
       setTypeInput(prev => (prev === 'text' ? 'password' : 'text'))
-    }
-
-    const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-      if ((e.key = 'Enter')) {
-        onEnter && onEnter()
-      }
     }
 
     return (
@@ -83,7 +80,6 @@ export const Input = memo(
             <StyledInput
               value={value}
               ref={ref}
-              onKeyDown={onEnterHandler}
               error={!!error}
               withSaveButton={!!withSaveButton}
               type={typeInput}
