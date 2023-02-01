@@ -20,12 +20,12 @@ const Schema = yup.object({
 export const PasswordTestForm = () => {
 
   const ONLY_LETTERS = /[a-z]/gi
-  const ONLY_DIGITS = /^\d+$/
+  const ONLY_DIGITS = /[0-9]/
   const ONLY_SYMBOLS = /[!@#$%^&*)(+=.<>{}[\]:;'"|~`_-]/g
   const LETTERS_AND_DIGITS = /^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/
   /*const LETTERS_AND_SYMBOLS = /^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/
   const DIGITS_AND_SYMBOLS = /^[0-9\x2D\x2B\x23]+$/
-  const LETTERS_DIGITS_SYMBOLS = /^(?=.*[a-z0-9])[a-z0-9!@#$%&*.]{7,}$/i*/
+  const LETTERS_DIGITS_SYMBOLS = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])$/*/
 
   const [passwordStrength, setPasswordStrength] = useState<StrengthType>('empty')
 
@@ -37,7 +37,7 @@ export const PasswordTestForm = () => {
     resolver: yupResolver(Schema)
   })
   const onChangePasswordHandler = (newPass: string) => {
-    if (newPass.length < 8) {
+    if (newPass.trim().length < 8) {
       setPasswordStrength('error')
     }
     if (newPass.length >= 8) {
@@ -53,6 +53,10 @@ export const PasswordTestForm = () => {
       if (newPass.match(LETTERS_AND_DIGITS)) {
         setPasswordStrength('medium')
       }
+      /*if (newPass.match(LETTERS_DIGITS_SYMBOLS)) {
+        if (newPass.includes(''))
+        setPasswordStrength('strong')
+      }*/
     }
   }
 

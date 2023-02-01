@@ -1,4 +1,4 @@
-import {ChangeEvent, forwardRef, InputHTMLAttributes, memo, useState} from 'react'
+import {ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, memo, useState} from 'react'
 
 import {
   StyledInput,
@@ -46,6 +46,10 @@ export const Input = memo(
       onChangePassword?.(e.currentTarget.value.trim())
     }
 
+    const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+      if (e.code === 'Space')
+        e.preventDefault()
+    }
     const toggleTypeHandler = () => {
       setTypeInput(prev => (prev === 'text' ? 'password' : 'text'))
     }
@@ -83,6 +87,7 @@ export const Input = memo(
               error={!!error}
               withSaveButton={!!withSaveButton}
               type={typeInput}
+              onKeyDown={onKeyDownHandler}
               hidePassword={!!hidePassword}
               onChange={inputValueHandler}
               placeholder={title}
