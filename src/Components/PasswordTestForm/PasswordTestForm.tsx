@@ -11,53 +11,59 @@ interface FormValues {
   password: string
 }
 
-export type StrengthType = 'empty' | 'easy' | 'medium' | 'strong' | 'error'
+export enum StrengthType {
+  Empty = 'Empty',
+  Easy = 'Easy',
+  Medium = 'Medium',
+  Strong = 'Strong',
+  Error = 'Error'
+}
 
-const Schema = yup.object({
+const ValidationSchema = yup.object({
   password: yup.string().required().min(8).max(50)
 })
 
 export const PasswordTestForm = () => {
 
-  const ONLY_LETTERS = /[a-z]/gi
-  const ONLY_DIGITS = /[0-9]/
-  const ONLY_SYMBOLS = /[!@#$%^&*)(+=.<>{}[\]:;'"|~`_-]/g
-  const LETTERS_AND_DIGITS = /^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/
-  /*const LETTERS_AND_SYMBOLS = /^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/
-  const DIGITS_AND_SYMBOLS = /^[0-9\x2D\x2B\x23]+$/
-  const LETTERS_DIGITS_SYMBOLS = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])$/*/
+  const ONLY_LETTERS = /^(?=.*[a-zA-Z])/
+  const ONLY_DIGITS = /(?=.*[0-9])/
+  const ONLY_SYMBOLS = /(?=.*[!@#\$%\^&\*\_])/
 
-  const [passwordStrength, setPasswordStrength] = useState<StrengthType>('empty')
+  const LETTERS_AND_DIGITS = /^(?=.*[a-zA-Z])(?=.*[0-9])/
+  const LETTERS_AND_SYMBOLS = /^(?=.*[a-zA-Z])(?=.*[!@#\$%\^&\*\_])/
+  const DIGITS_SYMBOLS = /(?=.*[0-9])(?=.*[!@#\$%\^&\*\_])/
+
+  const DIGITS_LETTERS_SYMBOLS = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_])/
+
+  const [passwordStrength, setPasswordStrength] = useState<StrengthType>(StrengthType.Empty)
 
   const {control, formState: {errors}} = useForm<FormValues>({
     defaultValues: {
       password: ''
     },
     mode: 'all',
-    resolver: yupResolver(Schema)
+    resolver: yupResolver(ValidationSchema)
   })
   const onChangePasswordHandler = (newPass: string) => {
-    if (newPass.trim().length < 8) {
-      setPasswordStrength('error')
-    }
-    if (newPass.length >= 8) {
-      if (newPass.match(ONLY_DIGITS)) {
-        setPasswordStrength('easy')
+    if (newPass.trim().length >= 8) {
+      if (
+        newPass.match(ONLY_LETTERS)
+        || newPass.match(ONLY_DIGITS)
+        || newPass.match(ONLY_SYMBOLS)
+      ) {
+        setPasswordStrength(StrengthType.Easy)
       }
-      if (newPass.match(ONLY_LETTERS)) {
-        setPasswordStrength('easy')
+      if (
+        newPass.match(LETTERS_AND_DIGITS)
+        || newPass.match(LETTERS_AND_SYMBOLS)
+        || newPass.match(DIGITS_SYMBOLS)
+      ) {
+        setPasswordStrength(StrengthType.Medium)
       }
-      if (newPass.match(ONLY_SYMBOLS)) {
-        setPasswordStrength('easy')
+      if (newPass.match(DIGITS_LETTERS_SYMBOLS)) {
+        setPasswordStrength(StrengthType.Strong)
       }
-      if (newPass.match(LETTERS_AND_DIGITS)) {
-        setPasswordStrength('medium')
-      }
-      /*if (newPass.match(LETTERS_DIGITS_SYMBOLS)) {
-        if (newPass.includes(''))
-        setPasswordStrength('strong')
-      }*/
-    }
+    } else setPasswordStrength(StrengthType.Error)
   }
 
   return (
@@ -67,7 +73,7 @@ export const PasswordTestForm = () => {
         <Controller control={control} name={'password'}
                     render={({field}) => (
                       <Input onChangePassword={onChangePasswordHandler}
-                             title={'Enter your password'} hidePassword
+                             title={'Your password'} hidePassword
                              error={errors.password?.message} {...field}
                       />)}
         />

@@ -1,4 +1,4 @@
-import {ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, memo, useState} from 'react'
+import {ChangeEvent, ClipboardEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, memo, useState} from 'react'
 
 import {
   StyledInput,
@@ -50,6 +50,9 @@ export const Input = memo(
       if (e.code === 'Space')
         e.preventDefault()
     }
+    const onClipBoardActionHandler = (e: ClipboardEvent) => {
+      e.preventDefault()
+    }
     const toggleTypeHandler = () => {
       setTypeInput(prev => (prev === 'text' ? 'password' : 'text'))
     }
@@ -85,6 +88,9 @@ export const Input = memo(
               value={value}
               ref={ref}
               error={!!error}
+              onCopy={onClipBoardActionHandler}
+              onCut={onClipBoardActionHandler}
+              onPaste={onClipBoardActionHandler}
               withSaveButton={!!withSaveButton}
               type={typeInput}
               onKeyDown={onKeyDownHandler}

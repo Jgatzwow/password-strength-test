@@ -1,7 +1,6 @@
 import styled, {css} from 'styled-components';
 import {StrengthType} from '../../PasswordTestForm';
 
-
 interface StyledPasswordStrengthDisplayItemProps {
   passwordStr: StrengthType
 }
@@ -18,7 +17,7 @@ export const StyledPasswordStrengthDisplayItem = styled.div<StyledPasswordStreng
   transition: 0.5s;
 
   ${props =>
-          props.passwordStr === 'easy' &&
+          props.passwordStr === 'Easy' &&
           css`
             &:first-child {
               opacity: 1;
@@ -28,15 +27,15 @@ export const StyledPasswordStrengthDisplayItem = styled.div<StyledPasswordStreng
           `
   }
   ${props =>
-          props.passwordStr === 'error' &&
+          props.passwordStr === 'Error' &&
           css`
-              opacity: 1;
-              color: aliceblue;
-              background: #c90505;
+            opacity: 1;
+            color: aliceblue;
+            background: #c90505;
           `
   }
   ${props =>
-          props.passwordStr === 'medium' &&
+          props.passwordStr === 'Medium' &&
           css`
             &:not(&:last-child) {
               opacity: 1;
@@ -45,7 +44,7 @@ export const StyledPasswordStrengthDisplayItem = styled.div<StyledPasswordStreng
           `
   }
   ${props =>
-          props.passwordStr === 'strong' &&
+          props.passwordStr === 'Strong' &&
           css`
             opacity: 1;
             background: #05be08;
