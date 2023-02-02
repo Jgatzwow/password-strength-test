@@ -9,7 +9,7 @@ export const StyledPasswordStrengthDisplayItem = styled.div<StyledPasswordStreng
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 150px;
+  width: 150px;
   height: 30px;
   border-radius: 5px;
   opacity: 0.5;
@@ -37,7 +37,7 @@ export const StyledPasswordStrengthDisplayItem = styled.div<StyledPasswordStreng
   ${props =>
           props.passwordStr === 'Medium' &&
           css`
-            &:not(&:last-child) {
+            &:nth-child(1),&:nth-child(2) {
               opacity: 1;
               background: #cece04;
             }
