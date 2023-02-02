@@ -7,7 +7,7 @@ import {
   ONLY_DIGITS,
   ONLY_LETTERS,
   ONLY_SYMBOLS
-} from '../Consts/Consts'
+} from '../consts/Consts'
 
 let passwordStrength: StrengthType
 export const validate = (inputVal: string): StrengthType => {

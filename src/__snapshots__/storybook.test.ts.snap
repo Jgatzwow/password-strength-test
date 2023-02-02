@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components/Input Default Input 1`] = `
+<div
+  className="wrapperWrapper"
+>
+  <div
+    className="wrapper"
+  >
+    <span
+      className="sc-pyfCe erhkmh span"
+    >
+      Your Password
+    </span>
+    <div
+      className="sc-ftTHYK isWCYd"
+      onClick={[Function]}
+      tabIndex={1}
+    >
+      <svg
+        className="sc-gKPRtg inQsbI"
+      >
+        Eye.svg
+      </svg>
+    </div>
+    <label
+      className="label"
+    >
+      <input
+        className="sc-jSUZER jbmgRA"
+        onChange={[Function]}
+        onCopy={[Function]}
+        onCut={[Function]}
+        onKeyDown={[Function]}
+        onPaste={[Function]}
+        placeholder="Your Password"
+        type="password"
+      />
+      <span
+        className="sc-pyfCe faWgMH error"
+      />
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/Input Error Input 1`] = `
+<div
+  className="wrapperWrapper"
+>
+  <div
+    className="wrapper"
+  >
+    <span
+      className="sc-pyfCe erhkmh span"
+    >
+      Your Password
+    </span>
+    <div
+      className="sc-ftTHYK isWCYd"
+      onClick={[Function]}
+      tabIndex={1}
+    >
+      <svg
+        className="sc-gKPRtg inQsbI"
+      >
+        Eye.svg
+      </svg>
+    </div>
+    <label
+      className="label"
+    >
+      <input
+        className="sc-jSUZER diGLZb"
+        onChange={[Function]}
+        onCopy={[Function]}
+        onCut={[Function]}
+        onKeyDown={[Function]}
+        onPaste={[Function]}
+        placeholder="Your Password"
+        type="password"
+      />
+      <span
+        className="sc-pyfCe faWgMH error"
+      >
+        Some thing is wrong
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components/PasswordTestForm Password Test Form Example 1`] = `
+<form>
+  <div
+    className="sc-gswNZR bdmqma"
+  >
+    <h2
+      className="sc-dkrFOg jOZQpe"
+    >
+      Enter Your Password
+    </h2>
+    <div
+      className="wrapperWrapper"
+    >
+      <div
+        className="wrapper"
+      >
+        <span
+          className="sc-pyfCe erhkmh span"
+        >
+          Your password
+        </span>
+        <div
+          className="sc-ftTHYK isWCYd"
+          onClick={[Function]}
+          tabIndex={1}
+        >
+          <svg
+            className="sc-gKPRtg inQsbI"
+          >
+            Eye.svg
+          </svg>
+        </div>
+        <label
+          className="label"
+        >
+          <input
+            className="sc-jSUZER jbmgRA"
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onCopy={[Function]}
+            onCut={[Function]}
+            onKeyDown={[Function]}
+            onPaste={[Function]}
+            placeholder="Your password"
+            type="password"
+            value=""
+          />
+          <span
+            className="sc-pyfCe faWgMH error"
+          />
+        </label>
+      </div>
+    </div>
+    <p
+      className="sc-hLBbgP kpiiqE"
+    >
+      Password Strength
+    </p>
+    <div
+      className="sc-eDvSVe jGVjjw"
+    >
+      <div
+        className="sc-bcXHqe gwoTgZ"
+      >
+        Easy
+      </div>
+      <div
+        className="sc-bcXHqe gwoTgZ"
+      >
+        Medium
+      </div>
+      <div
+        className="sc-bcXHqe gwoTgZ"
+      >
+        Strong
+      </div>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Components/StrengthDisplayItem Disabled Strength Item 1`] = `
+<div
+  className="sc-bcXHqe gwoTgZ"
+>
+  Empty
+</div>
+`;
+
+exports[`Storyshots Components/StrengthDisplayItem Green Strength Item 1`] = `
+<div
+  className="sc-bcXHqe jgrPts"
+>
+  Strong
+</div>
+`;
+
+exports[`Storyshots Components/StrengthDisplayItem Red Strength Item 1`] = `
+<div
+  className="sc-bcXHqe GIWHW"
+>
+  Error or Easy
+</div>
+`;
+
+exports[`Storyshots Components/StrengthDisplayItem Yellow Strength Item 1`] = `
+<div
+  className="sc-bcXHqe kEveRx"
+>
+  Medium
+</div>
+`;
