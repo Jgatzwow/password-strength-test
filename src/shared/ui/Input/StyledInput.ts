@@ -1,6 +1,6 @@
-import styled, {css} from 'styled-components'
-import {ReactComponent as EyeIcon} from '../../assets/icons/Eye.svg'
-import {ReactComponent as EyeSlashIcon} from '../../assets/icons/Eye-slash.svg'
+import styled, { css } from 'styled-components'
+import { ReactComponent as EyeIcon } from '../../assets/icons/Eye.svg'
+import { ReactComponent as EyeSlashIcon } from '../../assets/icons/Eye-slash.svg'
 
 interface StyledInputProps {
   hidePassword?: boolean
@@ -34,25 +34,25 @@ export const StyledInput = styled.input<StyledInputProps>`
   }
 
   ${props =>
-          props.hidePassword &&
-          css`
-            padding-right: 48px;
-          `}
+    props.hidePassword &&
+    css`
+      padding-right: 48px;
+    `}
   ${props =>
-          props.withSaveButton &&
-          css`
-            padding-right: 80px;
-          `}
+    props.withSaveButton &&
+    css`
+      padding-right: 80px;
+    `}
   ${props =>
-          props.error &&
-          css`
-            border: none;
-            border-bottom: 2px solid #ff3636;
+    props.error &&
+    css`
+      border: none;
+      border-bottom: 2px solid #ff3636;
 
-            &:focus {
-              border-bottom: 2px solid #ff3636;
-            }
-          `}
+      &:focus {
+        border-bottom: 2px solid #ff3636;
+      }
+    `}
 `
 export const StyledShowPasswordIcon = styled(EyeIcon)`
   width: 24px;

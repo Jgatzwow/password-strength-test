@@ -1,5 +1,5 @@
-import {StrengthType} from '../PasswordTestForm';
-import {validate} from '../../../shared/utils/validate';
+import { StrengthType } from '../PasswordTestForm'
+import { validate } from '../../../shared/utils/validate'
 
 test('Easy password strength should be set', () => {
   const initValue = 'asfasfaffsfas'

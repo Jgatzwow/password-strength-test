@@ -1,5 +1,5 @@
-import React, {FC, PropsWithChildren} from 'react';
-import {StyledText} from './StyledText';
+import React, { FC, PropsWithChildren } from 'react'
+import { StyledText } from './StyledText'
 
 interface TextProps {
   fontSize?: string
@@ -8,6 +8,9 @@ interface TextProps {
   lineHeight?: string
 }
 
-export const Text: FC<PropsWithChildren<TextProps>> = ({children, ...restProps}) => {
-  return <StyledText {...restProps} >{children}</StyledText>
-};
+export const Text: FC<PropsWithChildren<TextProps>> = ({
+  children,
+  ...restProps
+}) => {
+  return <StyledText {...restProps}>{children}</StyledText>
+}

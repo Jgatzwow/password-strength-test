@@ -1,5 +1,5 @@
-import React, {FC, PropsWithChildren} from 'react';
-import {StyledFlexBox} from './StyledFlexBox';
+import React, { FC, PropsWithChildren } from 'react'
+import { StyledFlexBox } from './StyledFlexBox'
 
 interface FlexBoxProps {
   flexDirection?: string
@@ -12,6 +12,9 @@ interface FlexBoxProps {
   height?: string
 }
 
-export const FlexBox: FC<PropsWithChildren<FlexBoxProps>> = ({children, ...restProps}) => {
+export const FlexBox: FC<PropsWithChildren<FlexBoxProps>> = ({
+  children,
+  ...restProps
+}) => {
   return <StyledFlexBox {...restProps}>{children}</StyledFlexBox>
-};
+}

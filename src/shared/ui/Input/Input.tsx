@@ -1,4 +1,12 @@
-import {ChangeEvent, ClipboardEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, memo, useState} from 'react'
+import {
+  ChangeEvent,
+  ClipboardEvent,
+  forwardRef,
+  InputHTMLAttributes,
+  KeyboardEvent,
+  memo,
+  useState
+} from 'react'
 
 import {
   StyledInput,
@@ -7,8 +15,8 @@ import {
   StyledShowPasswordWrapper
 } from './StyledInput'
 import styles from './Input.module.css'
-import {Span} from '../Span/Span'
-import classNames from 'classnames';
+import { Span } from '../Span/Span'
+import classNames from 'classnames'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string
@@ -46,8 +54,7 @@ export const Input = memo(
     }
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-      if (e.code === 'Space')
-        e.preventDefault()
+      if (e.code === 'Space') e.preventDefault()
     }
     const onClipBoardActionHandler = (e: ClipboardEvent) => {
       e.preventDefault()
@@ -61,7 +68,7 @@ export const Input = memo(
         <div className={styles.wrapper}>
           <Span
             className={classNames(styles.span, {
-              [styles.show]: (value as string)
+              [styles.show]: value as string
             })}
             nonSelect
             light
@@ -71,9 +78,9 @@ export const Input = memo(
           {hidePassword ? (
             <StyledShowPasswordWrapper onClick={toggleTypeHandler} tabIndex={1}>
               {typeInput === 'password' ? (
-                <StyledShowPasswordIcon/>
+                <StyledShowPasswordIcon />
               ) : (
-                <StyledShowPasswordSlashIcon/>
+                <StyledShowPasswordSlashIcon />
               )}
             </StyledShowPasswordWrapper>
           ) : null}

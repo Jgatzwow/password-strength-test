@@ -1,5 +1,5 @@
-import React, {FC, memo, PropsWithChildren} from 'react';
-import {StyledTitle} from './StyledTitle';
+import React, { FC, memo, PropsWithChildren } from 'react'
+import { StyledTitle } from './StyledTitle'
 
 interface TitleProps {
   fontSize?: string
@@ -8,6 +8,8 @@ interface TitleProps {
   marginBottom: string
 }
 
-export const Title: FC<PropsWithChildren<TitleProps>> = memo(({children, ...restProps}) => {
-  return <StyledTitle {...restProps}>{children}</StyledTitle>;
-});
+export const Title: FC<PropsWithChildren<TitleProps>> = memo(
+  ({ children, ...restProps }) => {
+    return <StyledTitle {...restProps}>{children}</StyledTitle>
+  }
+)

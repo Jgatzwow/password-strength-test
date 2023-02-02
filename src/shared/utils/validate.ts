@@ -1,4 +1,4 @@
-import {StrengthType} from '../../Components/PasswordTestForm/PasswordTestForm';
+import { StrengthType } from '../../Components/PasswordTestForm/PasswordTestForm'
 import {
   DIGITS_LETTERS_SYMBOLS,
   DIGITS_SYMBOLS,
@@ -7,32 +7,31 @@ import {
   ONLY_DIGITS,
   ONLY_LETTERS,
   ONLY_SYMBOLS
-} from '../Consts/Consts';
+} from '../Consts/Consts'
 
-let passwordStrength: StrengthType;
+let passwordStrength: StrengthType
 export const validate = (inputVal: string): StrengthType => {
-
   if (inputVal.trim().length === 0) {
-    passwordStrength = (StrengthType.Empty)
+    passwordStrength = StrengthType.Empty
   } else if (inputVal.trim().length >= 8) {
     if (
-      inputVal.match(ONLY_LETTERS)
-      || inputVal.match(ONLY_DIGITS)
-      || inputVal.match(ONLY_SYMBOLS)
+      inputVal.match(ONLY_LETTERS) ||
+      inputVal.match(ONLY_DIGITS) ||
+      inputVal.match(ONLY_SYMBOLS)
     ) {
-      passwordStrength = (StrengthType.Easy)
+      passwordStrength = StrengthType.Easy
     }
     if (
-      inputVal.match(LETTERS_AND_DIGITS)
-      || inputVal.match(LETTERS_AND_SYMBOLS)
-      || inputVal.match(DIGITS_SYMBOLS)
+      inputVal.match(LETTERS_AND_DIGITS) ||
+      inputVal.match(LETTERS_AND_SYMBOLS) ||
+      inputVal.match(DIGITS_SYMBOLS)
     ) {
-      passwordStrength = (StrengthType.Medium)
+      passwordStrength = StrengthType.Medium
     }
     if (inputVal.match(DIGITS_LETTERS_SYMBOLS)) {
-      passwordStrength = (StrengthType.Strong)
+      passwordStrength = StrengthType.Strong
     }
-  } else passwordStrength = (StrengthType.Error)
+  } else passwordStrength = StrengthType.Error
 
   return passwordStrength
 }

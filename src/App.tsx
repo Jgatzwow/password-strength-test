@@ -1,13 +1,10 @@
-import React from 'react';
-import {PasswordTestForm} from './Components/PasswordTestForm/PasswordTestForm';
+import React from 'react'
+import { PasswordTestForm } from './Components/PasswordTestForm/PasswordTestForm'
 
-
-function App() {
+export const App = () => {
   return (
-    <div className="app">
-      <PasswordTestForm/>
+    <div className='app'>
+      <PasswordTestForm />
     </div>
-  );
+  )
 }
-
-export default App;
