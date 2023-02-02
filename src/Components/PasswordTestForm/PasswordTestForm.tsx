@@ -6,6 +6,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import {Input} from '../../shared/ui/Input/Input';
+import {validate} from '../../shared/utils/validate';
 
 interface FormValues {
   password: string
@@ -25,15 +26,6 @@ const ValidationSchema = yup.object({
 
 export const PasswordTestForm = () => {
 
-  const ONLY_LETTERS = /^(?=.*[a-zA-Z])/
-  const ONLY_DIGITS = /(?=.*[0-9])/
-  const ONLY_SYMBOLS = /(?=.*[!@#\$%\^&\*\_])/
-
-  const LETTERS_AND_DIGITS = /^(?=.*[a-zA-Z])(?=.*[0-9])/
-  const LETTERS_AND_SYMBOLS = /^(?=.*[a-zA-Z])(?=.*[!@#\$%\^&\*\_])/
-  const DIGITS_SYMBOLS = /(?=.*[0-9])(?=.*[!@#\$%\^&\*\_])/
-
-  const DIGITS_LETTERS_SYMBOLS = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\_])/
 
   const [passwordStrength, setPasswordStrength] = useState<StrengthType>(StrengthType.Empty)
 
@@ -45,27 +37,8 @@ export const PasswordTestForm = () => {
     resolver: yupResolver(ValidationSchema)
   })
   const onChangePasswordHandler = (newPass: string) => {
-    if (newPass.trim().length === 0) {
-      setPasswordStrength(StrengthType.Empty)
-    } else if (newPass.trim().length >= 8) {
-      if (
-        newPass.match(ONLY_LETTERS)
-        || newPass.match(ONLY_DIGITS)
-        || newPass.match(ONLY_SYMBOLS)
-      ) {
-        setPasswordStrength(StrengthType.Easy)
-      }
-      if (
-        newPass.match(LETTERS_AND_DIGITS)
-        || newPass.match(LETTERS_AND_SYMBOLS)
-        || newPass.match(DIGITS_SYMBOLS)
-      ) {
-        setPasswordStrength(StrengthType.Medium)
-      }
-      if (newPass.match(DIGITS_LETTERS_SYMBOLS)) {
-        setPasswordStrength(StrengthType.Strong)
-      }
-    } else setPasswordStrength(StrengthType.Error)
+    const newPassStrength = validate(newPass)
+    setPasswordStrength(newPassStrength)
   }
 
   return (
